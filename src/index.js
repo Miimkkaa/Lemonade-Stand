@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import MainPage from './MainPage/mainpage';
+import GetLemonade from './Lemonade/getLemonade';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GetLemonade />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,0 +1,29 @@
+*,
+*:after,
+*::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    text-align: center;
+    max-width: 900px;
+    background-color: whitesmoke;
+    margin-left: 21%;
+}
+
+.btn {
+    margin-bottom: 2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #f1ac28;
+    color: white;
+
+}
+
+.title {
+    margin-bottom: 2rem;
+}
