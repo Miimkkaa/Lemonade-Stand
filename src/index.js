@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
-import MainPage from './MainPage/mainpage';
-import GetLemonade from './Lemonade/getLemonade';
-import Menu from './menu/menu';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
+import App from './App';
 
 ReactDOM.render(
-  <React.StrictMode>
-   <MainPage/>
-  </React.StrictMode>,
+<BrowserRouter>
+<App/>
+</BrowserRouter>,
   document.getElementById('root')
 );
 
