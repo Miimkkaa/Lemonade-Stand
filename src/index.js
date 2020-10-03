@@ -5,10 +5,11 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import MainPage from './MainPage/mainpage';
 import GetLemonade from './Lemonade/getLemonade';
+import Menu from './menu/menu';
 
 ReactDOM.render(
   <React.StrictMode>
-    <GetLemonade />
+   <MainPage/>
   </React.StrictMode>,
   document.getElementById('root')
 );
