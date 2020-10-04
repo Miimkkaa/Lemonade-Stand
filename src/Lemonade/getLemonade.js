@@ -1,67 +1,83 @@
 import React, {useState, useEffect} from 'react';
 import firebaseConfig from '../firebaseConfig';
 import 'firebase/firestore';
-import { createStore } from 'redux';
+import {createStore} from 'redux';
+import styles from "./getLemonade.module.css"
+import Button from "react-bootstrap/Button"
 
 function GetLemonade() {
-
+// GET from firebase
     const [lemonade, setLemonade ] = useState([]);
 
     useEffect(() => {
         const db = firebaseConfig.firestore();
-    
+
         return db.collection("lemonade").onSnapshot((snapshot) => {
-          const lemonadeData = [];
-          snapshot.forEach((doc) =>
-          lemonadeData.push({ ...doc.data(), id: doc.id })
-          );
-          setLemonade(lemonadeData);
+            const lemonadeData = [];
+            snapshot.forEach((doc) =>
+                lemonadeData.push({ ...doc.data(), id: doc.id })
+            );
+            setLemonade(lemonadeData);
         });
-      }, []); // GET from firebase
-  console.log(lemonade);
+    }, []);
 
-    var numberofLemonade1 = 10;
-    var numberofLemonade2 = 10;
-    var profit = 0;
+// Redux
 
-    /* Actions
-    const buy = () => ({ type: 'BUY'}); //increment action - without payload
-    const decrement = () => ({ type: 'DECREMENT'}); //decrement action - without payload
-    const price = () => ({type: 'LEMONADE'}); 
+    const increment1 = () => ({ type: 'INCREMENT1'});
+    const increment2 = () => ({ type: 'INCREMENT2'});
 
-    // Reducers
     const countReducer = (profit = 0, action) => {
-
-        if (action.type === 'BUY') {
-            if (lemonade.name === 'lemonade1') {
-               return numberofLemonade1 - 1 && profit + 10;
-            } 
-            else if (lemonade.name === 'lemonade2') {
-                return numberofLemonade2 - 1 && profit + 15;
-            } 
-        }
+        if (action.type === 'INCREMENT1') { return profit + 10;}
+        if (action.type === 'INCREMENT2') { return profit + 15;}
+        return profit;
     };
 
-    //Store
-   // const store = Redux.createStore(countReducer); */
+    const store = createStore(countReducer);
+
+    function render(){
+        document.getElementById("value").innerHTML = store.getState();
+    }
+
+    store.subscribe(render);
+
+    function executeClick(lemonade){
+
+        switch(lemonade.name){
+            case('lemonade1'): {
+                console.log(lemonade.name)
+                store.dispatch(increment1())
+                store.subscribe(render);
+                break;
+            }
+            case('lemonade2'): {
+                console.log(lemonade.name)
+                store.dispatch(increment2())
+                store.subscribe(render);
+                break;
+            }
+
+        }
+
+    }
+
+
 
     return (
-        <div className="container">
-            <h1>We have two types of lemonade: </h1>
-            {lemonade.map((lemonade, index) => ( 
+
+        <div class={styles.container}>
+            <h1>We have two types of lemonades: </h1>
+            {lemonade.map((lemonade, index) => (
                 <div key={index}>
-                     <h1>{lemonade.name}</h1>
-                <h1>{lemonade.price}$</h1>
-                <button onClick="store.dispatch(buy())">BUY</button>
+                    <div class="my-card">
+                        <h4>{lemonade.name}</h4>
+                    </div>
+                    <h4 className={styles.price}>{lemonade.price} Dkk</h4>
+                    <Button variant="mybutton" onClick={() => executeClick(lemonade)}>BUY</Button>
                 </div>
             ))}
 
             <div>
-                <h2>Inventory</h2>
-                <h1>Lemonade1: {numberofLemonade1}</h1>
-                <h1>Lemonade2: {numberofLemonade2}</h1>
-
-                <h2>Profit: {profit}</h2>
+                <h1 style={{marginTop: '150px', color: 'black'}}>Current profit: <span className={styles.profit} id="value">0</span> Dkk</h1>
             </div>
         </div>
     )

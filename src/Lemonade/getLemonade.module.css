@@ -1,0 +1,19 @@
+.container{
+    justify-content: center !important;
+    align-content: center;
+    text-align: center;
+    color: #f57333;
+}
+
+h4{
+    font-size: 16pt;
+    color: black;
+}
+
+.price{
+    font-weight: bold;
+}
+
+.profit{
+    color: #34cd49;
+}
