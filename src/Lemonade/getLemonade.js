@@ -43,13 +43,13 @@ function GetLemonade() {
     function executeClick(lemonade){
 
         switch(lemonade.name){
-            case('lemonade1'): {
+            case('Lemonade with ice & lemon'): {
                 console.log(lemonade.name)
                 store.dispatch(increment1())
                 store.subscribe(render);
                 break;
             }
-            case('lemonade2'): {
+            case('Lemonade with ice, lime and grapefruit'): {
                 console.log(lemonade.name)
                 store.dispatch(increment2())
                 store.subscribe(render);
