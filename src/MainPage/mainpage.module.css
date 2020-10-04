@@ -1,0 +1,38 @@
+/**,*/
+/**:after,*/
+/**::before {*/
+/*    -webkit-box-sizing: border-box;*/
+/*    -moz-box-sizing: border-box;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+.container{
+justify-content: center;
+    align-content: center;
+    color: #f57333;
+}
+
+.hero{
+text-align: center;
+    background-color: #fcf5c7 !important;
+
+}
+
+
+img{
+    position: absolute;
+    right: 0;
+    bottom: -320px;
+    pointer-events: none;
+}
+
+.title {
+    margin-bottom: 2rem;
+    color: #61dafb;
+
+
+}
+
+.title::selection{
+    color: #db0f48;
+}
